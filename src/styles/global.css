@@ -36,6 +36,17 @@
   }
 }
 
+/* Explicit Logo Brand Text Contrast */
+.resus-logo-text {
+  color: #0f172a !important;
+}
+
+html.dark .resus-logo-text,
+.dark .resus-logo-text {
+  color: #ffffff !important;
+}
+
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
