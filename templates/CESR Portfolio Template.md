@@ -1,0 +1,40 @@
+---
+title: "CESR Portfolio: {{title}}"
+description: "SLO evidence mapping, audit project templates, and specialist registration documentation."
+date: {{date}}
+section: "cesr-portfolio"
+tags: ["cesr", "portfolio", "rcem", "audit", "slo"]
+draft: false
+coverImage: "/attachments/rsi-algorithm-flowchart.svg"
+author: "Resus Docs Portfolio Team"
+---
+
+import Img from '../../components/Img.astro';
+import ObsidianCallout from '../../components/ObsidianCallout.astro';
+
+<ObsidianCallout type="note" title="SLO EVIDENCE MAP">
+  <strong>Target Specialty Learning Outcome:</strong> SLO 1 (Resuscitation) / SLO 6 (Governance & Audit).
+</ObsidianCallout>
+
+## 1. Evidence Overview & Logbook Data
+
+| Evidence Code | Document Type | Supervisor Sign-off | Status |
+| :--- | :--- | :--- | :--- |
+| **EV-001** | QIP Audit Loop Project | Dr. Smith (Consultant) | `[COMPLETE]` |
+| **EV-002** | WPBAs / Mini-CEX Log | Dr. Jones (Consultant) | `[IN PROGRESS]` |
+
+<Img
+  src="/attachments/rsi-algorithm-flowchart.svg"
+  alt="Portfolio Evidence Logbook"
+  caption="Figure 1: Quality Improvement Project PDSA Cycle Chart."
+  align="center"
+  width="md"
+  rounded="lg"
+  shadow="md"
+/>
+
+## 2. PDSA Audit Loop Details
+- **Plan:** Define baseline metrics and department target.
+- **Do:** Implement clinical change / pathway.
+- **Study:** Re-audit 50 consecutive cases.
+- **Act:** Embed findings into departmental guidelines.
