@@ -13,6 +13,7 @@ const postsCollection = defineCollection({
         message: `Section must be one of: ${SECTION_KEYS.join(', ')}`,
       }
     ),
+    slug: z.string().optional(), // Optional slug override
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     coverImage: z.string().optional(),

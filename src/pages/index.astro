@@ -4,6 +4,7 @@ import PostCard from '../components/PostCard.astro';
 import Logo from '../components/Logo.astro';
 import { getCollection } from 'astro:content';
 import { SECTIONS } from '../config/sections';
+import { getPostSlug } from '../utils/slug';
 import readingTime from 'reading-time';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -114,7 +115,7 @@ const sectionCounts = Object.keys(SECTIONS).reduce((acc, key) => {
           description={featuredPost.data.description}
           date={featuredPost.data.date}
           section={featuredPost.data.section}
-          slug={featuredPost.slug}
+          slug={getPostSlug(featuredPost)}
           tags={featuredPost.data.tags}
           readingTime={readingTime(featuredPost.body).text}
           coverImage={featuredPost.data.coverImage}
@@ -136,7 +137,7 @@ const sectionCounts = Object.keys(SECTIONS).reduce((acc, key) => {
             description={post.data.description}
             date={post.data.date}
             section={post.data.section}
-            slug={post.slug}
+            slug={getPostSlug(post)}
             tags={post.data.tags}
             readingTime={readingTime(post.body).text}
             coverImage={post.data.coverImage}

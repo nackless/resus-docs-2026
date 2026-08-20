@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 import { SECTIONS, getSectionConfig } from '../../config/sections';
+import { getPostSlug } from '../../utils/slug';
 import readingTime from 'reading-time';
 
 export async function getStaticPaths() {
@@ -99,7 +100,7 @@ const tagsList = Object.entries(tagsMap).sort((a, b) => b[1] - a[1]);
             description={post.data.description}
             date={post.data.date}
             section={post.data.section}
-            slug={post.slug}
+            slug={getPostSlug(post)}
             tags={post.data.tags}
             readingTime={readingTime(post.body).text}
             coverImage={post.data.coverImage}

@@ -4,6 +4,7 @@ import Img from '../../components/Img.astro';
 import ObsidianCallout from '../../components/ObsidianCallout.astro';
 import { getCollection } from 'astro:content';
 import { getSectionConfig } from '../../config/sections';
+import { getPostSlug } from '../../utils/slug';
 import readingTime from 'reading-time';
 
 export async function getStaticPaths() {
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
   return posts.map((post) => ({
     params: {
       section: post.data.section,
-      slug: post.slug,
+      slug: getPostSlug(post),
     },
     props: { post },
   }));
