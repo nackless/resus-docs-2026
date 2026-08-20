@@ -33,19 +33,10 @@
   body {
     min-height: 100vh;
     overflow-x: hidden;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
   }
 }
-
-/* Explicit Logo Brand Text Contrast */
-.resus-logo-text {
-  color: #0f172a !important;
-}
-
-html.dark .resus-logo-text,
-.dark .resus-logo-text {
-  color: #ffffff !important;
-}
-
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -68,15 +59,15 @@ html.dark .resus-logo-text,
 
 /* Glassmorphism Classes */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.light .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Obsidian Callouts Styling */
@@ -86,6 +77,10 @@ html.dark .resus-logo-text,
   padding: 1rem 1.25rem;
   border-radius: 0.75rem;
   border-left-width: 4px;
+  background-color: rgba(15, 23, 42, 0.04);
+}
+
+.dark .obsidian-callout {
   background-color: rgba(15, 23, 42, 0.6);
 }
 
@@ -128,18 +123,18 @@ html.dark .resus-logo-text,
 :root {
   --pagefind-ui-scale: 0.9;
   --pagefind-ui-primary: #06b6d4;
-  --pagefind-ui-text: #f8fafc;
-  --pagefind-ui-background: #0f172a;
-  --pagefind-ui-border: #1e293b;
-  --pagefind-ui-tag: #1e293b;
+  --pagefind-ui-text: #0f172a;
+  --pagefind-ui-background: #ffffff;
+  --pagefind-ui-border: #cbd5e1;
+  --pagefind-ui-tag: #f1f5f9;
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.5rem;
   --pagefind-ui-font: 'Inter', sans-serif;
 }
 
-html:not(.dark) {
-  --pagefind-ui-text: #0f172a;
-  --pagefind-ui-background: #ffffff;
-  --pagefind-ui-border: #cbd5e1;
-  --pagefind-ui-tag: #f1f5f9;
+.dark {
+  --pagefind-ui-text: #f8fafc;
+  --pagefind-ui-background: #0f172a;
+  --pagefind-ui-border: #1e293b;
+  --pagefind-ui-tag: #1e293b;
 }

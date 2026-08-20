@@ -75,12 +75,12 @@ const fullTitle = title.includes('Resus Docs') ? title : `${title} | Resus Docs`
     </script>
   </head>
 
-  <body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 transition-colors duration-200">
     <!-- Ambient Background Glows -->
     <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-      <div class="absolute top-1/3 -right-40 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/3 -right-40 w-96 h-96 bg-red-500/10 dark:bg-red-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
     </div>
 
     <!-- Header Navigation -->
