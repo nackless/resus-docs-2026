@@ -1,7 +1,7 @@
 ---
-title: "Critical Appraisal: {{title}}"
+title: "<% tp.file.title %>"
 description: "Methodological critique, PICO analysis, and biostatistics review of landmark trial."
-date: {{date}}
+date: <% tp.date.now("YYYY-MM-DD") %>
 section: "critical-appraisal"
 tags: ["critical-appraisal", "trials", "PICO", "biostatistics"]
 draft: false
@@ -36,6 +36,8 @@ import ObsidianCallout from '../../components/ObsidianCallout.astro';
 />
 
 ## 2. Statistical Findings & Methodological Critique
+
+<% tp.file.cursor() %>
 
 - **Primary Outcome Result:** Relative Risk (RR) / Odds Ratio (OR) with 95% Confidence Intervals.
 - **Internal Validity:** Randomization, blinding, loss to follow-up.

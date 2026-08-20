@@ -1,7 +1,7 @@
 ---
-title: "Clinical Protocol: {{title}}"
+title: "<% tp.file.title %>"
 description: "High-acuity emergency medicine protocol, resuscitation algorithm, or procedure guide."
-date: {{date}}
+date: <% tp.date.now("YYYY-MM-DD") %>
 section: "clinical-zone"
 tags: ["clinical-zone", "resuscitation", "airway"]
 draft: false
@@ -35,15 +35,7 @@ import ObsidianCallout from '../../components/ObsidianCallout.astro';
 | **First-line Agent** | 1.5 mg/kg IV | Hypersensitivity | Rapid onset |
 | **Second-line Agent**| 1.0 mg/kg IV | Organ failure | Titrate to effect |
 
-<Img
-  src="/attachments/rsi-algorithm-flowchart.svg"
-  alt="Bedside Quick Reference"
-  caption="Bedside reference note."
-  align="right"
-  width="sm"
-  rounded="md"
-  shadow="md"
-/>
+<% tp.file.cursor() %>
 
 ## 3. Post-Procedure Monitoring
 - Monitor vital signs every 5 minutes.

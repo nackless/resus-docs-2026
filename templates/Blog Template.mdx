@@ -1,7 +1,7 @@
 ---
-title: "FOAMed Reflection: {{title}}"
+title: "<% tp.file.title %>"
 description: "Resuscitation team dynamics, human factors, and FOAMed reflections."
-date: {{date}}
+date: <% tp.date.now("YYYY-MM-DD") %>
 section: "blog"
 tags: ["blog", "foamed", "leadership", "human-factors"]
 draft: false
@@ -27,6 +27,8 @@ import ObsidianCallout from '../../components/ObsidianCallout.astro';
   rounded="xl"
   shadow="md"
 />
+
+<% tp.file.cursor() %>
 
 Write your reflection and thoughts on emergency resuscitation, team communication, or department insights here...
 

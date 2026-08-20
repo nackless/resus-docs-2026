@@ -1,7 +1,7 @@
 ---
-title: "CESR Portfolio: {{title}}"
+title: "<% tp.file.title %>"
 description: "SLO evidence mapping, audit project templates, and specialist registration documentation."
-date: {{date}}
+date: <% tp.date.now("YYYY-MM-DD") %>
 section: "cesr-portfolio"
 tags: ["cesr", "portfolio", "rcem", "audit", "slo"]
 draft: false
@@ -34,6 +34,9 @@ import ObsidianCallout from '../../components/ObsidianCallout.astro';
 />
 
 ## 2. PDSA Audit Loop Details
+
+<% tp.file.cursor() %>
+
 - **Plan:** Define baseline metrics and department target.
 - **Do:** Implement clinical change / pathway.
 - **Study:** Re-audit 50 consecutive cases.
