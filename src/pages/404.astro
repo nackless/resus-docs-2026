@@ -5,32 +5,32 @@ import Logo from '../components/Logo.astro';
 
 <Layout title="404 Protocol Not Found | Resus Docs">
   <section class="min-h-[70vh] flex items-center justify-center py-20 px-4">
-    <div class="max-w-md w-full text-center space-y-6 bg-slate-900/60 p-8 rounded-3xl border border-slate-800 backdrop-blur-xl shadow-2xl">
+    <div class="max-w-md w-full text-center space-y-6 bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 backdrop-blur-xl shadow-2xl">
       
-      <div class="inline-flex p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-400">
+      <div class="inline-flex p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-500 dark:text-red-400">
         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
         </svg>
       </div>
 
       <div class="space-y-2">
-        <span class="text-xs font-mono font-bold uppercase tracking-wider text-red-400">Asystole Alert • 404 Error</span>
-        <h1 class="text-3xl font-extrabold text-slate-100">Protocol Not Found</h1>
-        <p class="text-slate-400 text-sm leading-relaxed">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-red-500 dark:text-red-400">Asystole Alert • 404 Error</span>
+        <h1 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Protocol Not Found</h1>
+        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
           The requested clinical document or route does not exist or has been relocated in the vault.
         </p>
       </div>
 
-      <div class="pt-4 border-t border-slate-800 flex justify-center gap-4">
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-center gap-4">
         <a
           href="/"
-          class="px-5 py-2.5 rounded-xl text-xs font-mono font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors"
+          class="px-5 py-2.5 rounded-xl text-xs font-mono font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors shadow-sm"
         >
           Return to Command Center
         </a>
         <a
           href="/clinical-zone"
-          class="px-5 py-2.5 rounded-xl text-xs font-mono font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+          class="px-5 py-2.5 rounded-xl text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
         >
           Clinical Zone
         </a>

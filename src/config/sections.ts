@@ -16,9 +16,9 @@ export const SECTIONS: Record<string, SectionConfig> = {
     slug: 'clinical-zone',
     description: 'Evidence-based resuscitation algorithms, emergency procedures, and high-acuity clinical protocols.',
     iconName: 'Activity',
-    badgeColor: 'border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20',
+    badgeColor: 'border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20',
     accentColor: '#ef4444',
-    gradient: 'from-red-500/20 via-slate-900 to-slate-950',
+    gradient: 'from-red-500/10 via-slate-50 to-white dark:from-red-500/20 dark:via-slate-900 dark:to-slate-950',
   },
   'critical-appraisal': {
     id: 'critical-appraisal',
@@ -26,9 +26,9 @@ export const SECTIONS: Record<string, SectionConfig> = {
     slug: 'critical-appraisal',
     description: 'Methodological breakdown of landmark EM trials, PICO analyses, biostatistics, and RCT evaluations.',
     iconName: 'FileText',
-    badgeColor: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20',
+    badgeColor: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 hover:bg-cyan-500/20',
     accentColor: '#06b6d4',
-    gradient: 'from-cyan-500/20 via-slate-900 to-slate-950',
+    gradient: 'from-cyan-500/10 via-slate-50 to-white dark:from-cyan-500/20 dark:via-slate-900 dark:to-slate-950',
   },
   'cesr-portfolio': {
     id: 'cesr-portfolio',
@@ -36,9 +36,9 @@ export const SECTIONS: Record<string, SectionConfig> = {
     slug: 'cesr-portfolio',
     description: 'Guidance, SLO evidence mapping, audit templates, and portfolio strategies for EM specialist registration.',
     iconName: 'Award',
-    badgeColor: 'border-purple-500/30 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20',
+    badgeColor: 'border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-400 hover:bg-purple-500/20',
     accentColor: '#8b5cf6',
-    gradient: 'from-purple-500/20 via-slate-900 to-slate-950',
+    gradient: 'from-purple-500/10 via-slate-50 to-white dark:from-purple-500/20 dark:via-slate-900 dark:to-slate-950',
   },
   'blog': {
     id: 'blog',
@@ -46,9 +46,9 @@ export const SECTIONS: Record<string, SectionConfig> = {
     slug: 'blog',
     description: 'Field notes, human factors, resuscitation leadership, FOAMed reflections, and department insights.',
     iconName: 'BookOpen',
-    badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20',
+    badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/20',
     accentColor: '#10b981',
-    gradient: 'from-emerald-500/20 via-slate-900 to-slate-950',
+    gradient: 'from-emerald-500/10 via-slate-50 to-white dark:from-emerald-500/20 dark:via-slate-900 dark:to-slate-950',
   },
 };
 
