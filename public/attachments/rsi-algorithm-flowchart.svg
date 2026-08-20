@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#070a11" />
+    </linearGradient>
+    <linearGradient id="box-red" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+    <linearGradient id="box-cyan" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="box-emerald" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" rx="16" fill="url(#bg)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="400" y="42" fill="#f8fafc" font-family="Inter, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">
+    EMERGENCY AIRWAY & RSI PROTOCOL
+  </text>
+  <text x="400" y="64" fill="#06b6d4" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle">
+    Resus Docs Clinical Zone Reference
+  </text>
+
+  <!-- Node 1: Pre-oxygenation -->
+  <rect x="50" y="100" width="200" height="60" rx="10" fill="url(#box-cyan)"/>
+  <text x="150" y="130" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Pre-oxygenation</text>
+  <text x="150" y="148" fill="#e0f2fe" font-family="Inter, sans-serif" font-size="11" text-anchor="middle">3 min Flush O2 / NIPPV</text>
+
+  <!-- Arrow 1-2 -->
+  <path d="M 250 130 H 295" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Node 2: Induction & Paralysis -->
+  <rect x="300" y="100" width="200" height="60" rx="10" fill="url(#box-red)"/>
+  <text x="400" y="130" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. Induction &amp; Paralysis</text>
+  <text x="400" y="148" fill="#fef2f2" font-family="Inter, sans-serif" font-size="11" text-anchor="middle">Ketamine + Rocuronium</text>
+
+  <!-- Arrow 2-3 -->
+  <path d="M 500 130 H 545" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Node 3: Intubation -->
+  <rect x="550" y="100" width="200" height="60" rx="10" fill="url(#box-emerald)"/>
+  <text x="650" y="130" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. Video Laryngoscopy</text>
+  <text x="650" y="148" fill="#ecfdf5" font-family="Inter, sans-serif" font-size="11" text-anchor="middle">First-pass success attempt</text>
+
+  <!-- Decision Branch -->
+  <path d="M 650 160 V 220 H 400" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Node 4: Confirmation -->
+  <rect x="250" y="220" width="300" height="70" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+  <text x="400" y="250" fill="#06b6d4" font-family="Inter, sans-serif" font-size="15" font-weight="bold" text-anchor="middle">ETCO2 Waveform Confirmation</text>
+  <text x="400" y="272" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle">Continuous Quantitative Capnography</text>
+
+  <!-- Rescue Airway Banner -->
+  <rect x="100" y="330" width="600" height="60" rx="10" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="400" y="358" fill="#a78bfa" font-family="Inter, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">FAILED AIRWAY RESCUE PLAN</text>
+  <text x="400" y="376" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Insert i-gel LMA ➔ Front-of-Neck Airway (FONA / Scalpel-Bougie-Tube)</text>
+</svg>

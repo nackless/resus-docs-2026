@@ -1,0 +1,36 @@
+name: Automated Image Optimization Engine (Phone Storage Protection)
+
+on:
+  push:
+    paths:
+      - 'public/attachments/**'
+      - 'src/assets/**'
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Resus Docs Sharp Optimization Engine
+        run: npm run optimize-images
+
+      - name: Auto-commit Compressed Assets Back to Repository
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(opt): downscale & compress mobile photos [skip ci]"
+          branch: ${{ github.head_ref || github.ref_name }}

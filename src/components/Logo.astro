@@ -1,0 +1,77 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
+  showTagline?: boolean;
+  class?: string;
+}
+
+const { 
+  size = 'md', 
+  showText = true, 
+  showTagline = true,
+  class: className = '' 
+} = Astro.props;
+
+const dimensions = {
+  sm: { icon: 'w-7 h-7', title: 'text-base', tagline: 'text-[10px]' },
+  md: { icon: 'w-9 h-9', title: 'text-xl', tagline: 'text-xs' },
+  lg: { icon: 'w-12 h-12', title: 'text-2xl', tagline: 'text-sm' },
+}[size];
+---
+
+<div class={`inline-flex items-center gap-3 group select-none ${className}`}>
+  <!-- Vector SVG Brand Mark -->
+  <div class={`relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${dimensions.icon}`}>
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-md">
+      <defs>
+        <linearGradient id="logo-bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0f172a" />
+          <stop offset="100%" stop-color="#070a11" />
+        </linearGradient>
+        <linearGradient id="logo-pulse-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ef4444" />
+          <stop offset="40%" stop-color="#f87171" />
+          <stop offset="100%" stop-color="#06b6d4" />
+        </linearGradient>
+        <linearGradient id="logo-cross-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#06b6d4" />
+          <stop offset="100%" stop-color="#3b82f6" />
+        </linearGradient>
+      </defs>
+      
+      <!-- Document Outer Silhouette with subtle border -->
+      <rect x="6" y="4" width="52" height="56" rx="12" fill="url(#logo-bg-grad)" stroke="#1e293b" stroke-width="2.5" />
+      <path d="M 44 4 L 58 18 L 44 18 Z" fill="#1e293b" />
+      
+      <!-- Minimalist Clinical Cross -->
+      <path d="M 32 14 V 28 M 25 21 H 39" stroke="url(#logo-cross-grad)" stroke-width="3" stroke-linecap="round" />
+      
+      <!-- Defib ECG Pulse Trace -->
+      <path 
+        d="M 10 44 L 18 44 L 21 39 L 25 50 L 30 20 L 36 46 L 40 38 L 44 44 L 54 44" 
+        stroke="url(#logo-pulse-grad)" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      />
+      
+      <!-- Live Monitoring Node -->
+      <circle cx="54" cy="44" r="2.5" fill="#06b6d4" class="animate-pulse" />
+    </svg>
+  </div>
+
+  {showText && (
+    <div class="flex flex-col">
+      <div class={`font-bold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-1.5 ${dimensions.title}`}>
+        <span>Resus</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-cyan-400 to-cyan-500">Docs</span>
+      </div>
+      {showTagline && (
+        <span class={`font-mono text-slate-500 dark:text-slate-400 leading-none tracking-wide ${dimensions.tagline}`}>
+          All things Emergency medicine
+        </span>
+      )}
+    </div>
+  )}
+</div>

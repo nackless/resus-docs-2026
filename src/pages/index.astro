@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCard from '../components/PostCard.astro';
+import Logo from '../components/Logo.astro';
+import { getCollection } from 'astro:content';
+import { SECTIONS } from '../config/sections';
+import readingTime from 'reading-time';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featuredPost = sortedPosts[0];
+const recentPosts = sortedPosts.slice(1, 7);
+
+// Count posts per section
+const sectionCounts = Object.keys(SECTIONS).reduce((acc, key) => {
+  acc[key] = allPosts.filter(p => p.data.section === key).length;
+  return acc;
+}, {} as Record<string, number>);
+---
+
+<Layout title="Resus Docs | All things Emergency medicine">
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-mono text-cyan-300 shadow-glow-cyan/20">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>Obsidian Engine Active • {allPosts.length} Clinical Protocols Published</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-100 tracking-tight leading-tight">
+          Evidence-Based Emergency Medicine & <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-cyan-400 to-cyan-500">Resuscitation Publishing</span>
+        </h1>
+
+        <!-- Tagline -->
+        <p class="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-sans">
+          Rapid bedside reference, critical trial appraisals, CESR portfolio evidence checklists, and FOAMed reflections engineered for high-acuity clinicians.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a
+            href="/clinical-zone"
+            class="px-6 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-red-500 to-cyan-500 text-white shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:-translate-y-0.5"
+          >
+            Explore Clinical Zone
+          </a>
+          <a
+            href="/cesr-portfolio"
+            class="px-6 py-3 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all duration-200"
+          >
+            CESR Portfolio Checklist
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Selector Grid -->
+  <section class="py-16 bg-slate-950/60 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-slate-100">Knowledge Collection Views</h2>
+          <p class="text-sm text-slate-400 font-mono mt-1">Select a dedicated collection to view curated protocols</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {Object.values(SECTIONS).map((sec) => (
+          <a
+            href={`/${sec.slug}`}
+            class="group relative p-6 rounded-2xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-semibold border ${sec.badgeColor}`}>
+                  {sec.name}
+                </span>
+                <span class="text-xs font-mono text-slate-500">{sectionCounts[sec.id] || 0} docs</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                {sec.description}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400 group-hover:text-cyan-400 transition-colors">
+              <span>View Archive</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured & Recent Articles -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    
+    {featuredPost && (
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <h2 class="text-xl font-bold tracking-tight text-slate-100 font-mono uppercase text-xs">Featured Clinical Focus</h2>
+        </div>
+        <PostCard
+          title={featuredPost.data.title}
+          description={featuredPost.data.description}
+          date={featuredPost.data.date}
+          section={featuredPost.data.section}
+          slug={featuredPost.slug}
+          tags={featuredPost.data.tags}
+          readingTime={readingTime(featuredPost.body).text}
+          coverImage={featuredPost.data.coverImage}
+          featured={true}
+        />
+      </div>
+    )}
+
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold tracking-tight text-slate-100">Latest Publications</h2>
+        <a href="/clinical-zone" class="text-xs font-mono text-cyan-400 hover:underline">View All Documents →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recentPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            section={post.data.section}
+            slug={post.slug}
+            tags={post.data.tags}
+            readingTime={readingTime(post.body).text}
+            coverImage={post.data.coverImage}
+          />
+        ))}
+      </div>
+    </div>
+
+  </section>
+</Layout>

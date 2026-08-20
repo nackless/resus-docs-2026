@@ -1,0 +1,81 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  align?: 'center' | 'left' | 'right' | 'full' | 'wide';
+  width?: 'sm' | 'md' | 'lg' | 'full' | string;
+  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  shadow?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  align = 'center',
+  width = 'full',
+  rounded = 'lg',
+  shadow = 'md',
+  class: className = '',
+} = Astro.props;
+
+// Calculate alignment classes
+const alignClasses = {
+  center: 'mx-auto my-6 text-center block',
+  left: 'float-left mr-6 mb-4 my-2 max-w-full sm:max-w-[50%]',
+  right: 'float-right ml-6 mb-4 my-2 max-w-full sm:max-w-[50%]',
+  wide: 'my-8 max-w-4xl mx-auto',
+  full: 'w-full my-8 max-w-none',
+}[align];
+
+// Preset widths mapping vs custom style
+const isPresetWidth = ['sm', 'md', 'lg', 'full'].includes(width);
+const presetWidthClass = {
+  sm: 'w-full sm:w-[30%] min-w-[220px]',
+  md: 'w-full sm:w-[50%] min-w-[280px]',
+  lg: 'w-full sm:w-[75%] min-w-[340px]',
+  full: 'w-full',
+}[width as 'sm' | 'md' | 'lg' | 'full'] || '';
+
+// Custom width inline style if not preset
+const customWidthStyle = !isPresetWidth ? `width: ${width}; max-width: 100%;` : undefined;
+
+// Rounded classes
+const roundedClass = {
+  none: 'rounded-none',
+  sm: 'rounded-sm',
+  md: 'rounded-md',
+  lg: 'rounded-lg',
+  xl: 'rounded-xl',
+  full: 'rounded-full',
+}[rounded];
+
+// Shadow classes
+const shadowClass = {
+  none: 'shadow-none',
+  sm: 'shadow-sm',
+  md: 'shadow-md',
+  lg: 'shadow-2xl shadow-slate-950/40 ring-1 ring-slate-800/80',
+}[shadow];
+---
+
+<figure class={`custom-img-figure group relative overflow-hidden transition-all duration-200 ${alignClasses} ${presetWidthClass} ${className}`} style={customWidthStyle}>
+  <div class="relative overflow-hidden rounded-inherit">
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class={`custom-img w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01] ${roundedClass} ${shadowClass}`}
+    />
+  </div>
+  {caption && (
+    <figcaption class="mt-2.5 px-2 text-xs text-center italic text-slate-400 dark:text-slate-400 font-sans tracking-wide">
+      <span class="inline-block border-t border-slate-700/40 pt-1.5 px-3">
+        {caption}
+      </span>
+    </figcaption>
+  )}
+</figure>

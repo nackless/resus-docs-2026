@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+
+const tagsMap = allPosts.reduce((acc, post) => {
+  post.data.tags.forEach((tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+  });
+  return acc;
+}, {} as Record<string, number>);
+
+const sortedTags = Object.entries(tagsMap).sort((a, b) => b[1] - a[1]);
+---
+
+<Layout title="Clinical Tags Index | Resus Docs" description="Browse emergency medicine clinical tags, topics, procedures, and evidence guides.">
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight mb-3">
+        Clinical Tag Index
+      </h1>
+      <p class="text-slate-400 text-sm font-sans">
+        Browse resuscitation topics, trials, procedures, and governance guides by clinical tag.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      {sortedTags.map(([tag, count]) => (
+        <a
+          href={`/tags/${tag}`}
+          class="p-4 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/40 transition-all duration-200 group flex flex-col justify-between"
+        >
+          <span class="text-sm font-mono font-semibold text-slate-300 group-hover:text-cyan-300 transition-colors">
+            #{tag}
+          </span>
+          <span class="text-xs font-mono text-slate-500 mt-3">
+            {count} {count === 1 ? 'article' : 'articles'}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
