@@ -18,3 +18,13 @@ export function getPostSlug(post: CollectionEntry<'posts'>): string {
   }
   return post.slug;
 }
+
+export function getPostDate(post: CollectionEntry<'posts'>): Date {
+  if (post.data.date) return new Date(post.data.date);
+  if (post.data.pubDate) return new Date(post.data.pubDate);
+  return new Date();
+}
+
+export function getPostCover(post: CollectionEntry<'posts'>): string | undefined {
+  return post.data.coverImage || post.data.image;
+}
