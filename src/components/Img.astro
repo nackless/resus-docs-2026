@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
-  src: string;
+  src: string | ImageMetadata;
   alt: string;
   caption?: string;
   align?: 'center' | 'left' | 'right' | 'full' | 'wide';
@@ -59,21 +61,49 @@ const shadowClass = {
   md: 'shadow-md',
   lg: 'shadow-2xl shadow-slate-950/40 ring-1 ring-slate-800/80',
 }[shadow];
+
+// Dynamically resolve image assets for Astro's Built-in Image Optimizer
+const images = import.meta.glob<{ default: ImageMetadata }>('/{assets,src/assets,public/assets,public/attachments}/**/*.{jpeg,jpg,png,gif,webp,svg}');
+
+let imageAsset: ImageMetadata | undefined;
+let isSvg = false;
+
+if (typeof src === 'string') {
+  const cleanPath = src.startsWith('/') ? src : `/${src}`;
+  isSvg = cleanPath.toLowerCase().endsWith('.svg');
+  const matchedKey = Object.keys(images).find(k => k === cleanPath || k.endsWith(cleanPath));
+  if (matchedKey && !isSvg) {
+    imageAsset = (await images[matchedKey]()).default;
+  }
+} else {
+  imageAsset = src;
+}
 ---
 
 <figure class={`custom-img-figure group relative overflow-hidden transition-all duration-200 ${alignClasses} ${presetWidthClass} ${className}`} style={customWidthStyle}>
   <div class="relative overflow-hidden rounded-inherit">
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      class={`custom-img w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01] ${roundedClass} ${shadowClass}`}
-    />
+    {imageAsset ? (
+      <Image
+        src={imageAsset}
+        alt={alt}
+        format="webp"
+        widths={[400, 800, 1200, 1920]}
+        sizes="(max-width: 768px) 100vw, 800px"
+        class={`custom-img w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01] ${roundedClass} ${shadowClass}`}
+      />
+    ) : (
+      <img
+        src={typeof src === 'string' ? src : src.src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        class={`custom-img w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01] ${roundedClass} ${shadowClass}`}
+      />
+    )}
   </div>
   {caption && (
-    <figcaption class="mt-2.5 px-2 text-xs text-center italic text-slate-400 dark:text-slate-400 font-sans tracking-wide">
-      <span class="inline-block border-t border-slate-700/40 pt-1.5 px-3">
+    <figcaption class="mt-2.5 px-2 text-xs text-center italic text-slate-500 dark:text-slate-400 font-sans tracking-wide">
+      <span class="inline-block border-t border-slate-200 dark:border-slate-700/40 pt-1.5 px-3">
         {caption}
       </span>
     </figcaption>
