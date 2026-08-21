@@ -16,7 +16,14 @@ export function getPostSlug(post: CollectionEntry<'posts'>): string {
   if (post.data.slug) {
     return slugify(post.data.slug);
   }
-  return post.slug;
+  if (post.slug) {
+    return post.slug;
+  }
+  if (post.id) {
+    const cleanId = post.id.replace(/\.(md|mdx)$/i, '');
+    return slugify(cleanId);
+  }
+  return slugify(post.data.title);
 }
 
 export function getPostDate(post: CollectionEntry<'posts'>): Date {
