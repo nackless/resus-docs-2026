@@ -3,6 +3,7 @@ title: How we learn
 author: analytical bull
 description:
 pubDate: 2026-08-04 21:12
+draft: true
 tags:
   - javascript
   - learning
