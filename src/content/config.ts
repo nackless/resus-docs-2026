@@ -1,8 +1,9 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 import { SECTION_KEYS } from '../config/sections';
 
 const postsCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './posts' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -13,7 +14,7 @@ const postsCollection = defineCollection({
         message: `Section must be one of: ${SECTION_KEYS.join(', ')}`,
       }
     ),
-    slug: z.string().optional(), // Optional slug override
+    slug: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     coverImage: z.string().optional(),

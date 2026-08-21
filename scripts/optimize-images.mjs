@@ -6,8 +6,9 @@ const MAX_WIDTH = 1920;
 const QUALITY = 82;
 
 const TARGET_DIRS = [
+  path.join(process.cwd(), 'assets'),
+  path.join(process.cwd(), 'public', 'assets'),
   path.join(process.cwd(), 'public', 'attachments'),
-  path.join(process.cwd(), 'src', 'assets'),
 ];
 
 async function processDirectory(dirPath) {

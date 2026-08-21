@@ -3,8 +3,9 @@ name: Automated Image Optimization Engine (Phone Storage Protection)
 on:
   push:
     paths:
+      - 'assets/**'
+      - 'public/assets/**'
       - 'public/attachments/**'
-      - 'src/assets/**'
   workflow_dispatch:
 
 jobs:

@@ -5,12 +5,12 @@ date: <% tp.date.now("YYYY-MM-DD") %>
 section: "clinical-zone"
 tags: ["clinical-zone", "resuscitation", "airway"]
 draft: false
-coverImage: "/attachments/rsi-algorithm-flowchart.svg"
+coverImage: "/assets/rsi-algorithm-flowchart.svg"
 author: "Resus Docs Team"
 ---
 
-import Img from '../../components/Img.astro';
-import ObsidianCallout from '../../components/ObsidianCallout.astro';
+import Img from '../src/components/Img.astro';
+import ObsidianCallout from '../src/components/ObsidianCallout.astro';
 
 <ObsidianCallout type="critical" title="HIGH-ACUITY RESUS ALGORITHM">
   <strong>Primary Clinical Precaution:</strong> Hemodynamic optimization and airway security must be prioritized.
@@ -19,7 +19,7 @@ import ObsidianCallout from '../../components/ObsidianCallout.astro';
 ## 1. Primary Resuscitation Algorithm
 
 <Img
-  src="/attachments/rsi-algorithm-flowchart.svg"
+  src="/assets/rsi-algorithm-flowchart.svg"
   alt="Resuscitation Algorithm Diagram"
   caption="Figure 1: Protocol flowchart and step-by-step decision pathway."
   align="center"

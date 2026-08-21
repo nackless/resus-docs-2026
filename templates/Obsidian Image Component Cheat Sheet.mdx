@@ -7,7 +7,7 @@ This cheat sheet shows how to insert images into your notes for publication on R
 ## 1. Standard Markdown Image Tag (Simple Default)
 
 ```markdown
-![Airway Diagram](/attachments/rsi-algorithm-flowchart.svg)
+![Airway Diagram](/assets/rsi-algorithm-flowchart.svg)
 ```
 *Renders automatically centered with rounded corners (`rounded-lg`) and responsive width.*
 
@@ -17,13 +17,13 @@ This cheat sheet shows how to insert images into your notes for publication on R
 
 Import statement at top of your note:
 ```mdx
-import Img from '../../components/Img.astro';
+import Img from '../src/components/Img.astro';
 ```
 
 ### 📍 A. Centered Image (Default)
 ```mdx
 <Img
-  src="/attachments/rsi-algorithm-flowchart.svg"
+  src="/assets/rsi-algorithm-flowchart.svg"
   alt="Emergency Airway Protocol Flowchart"
   caption="Figure 1: Complete Emergency RSI & FONA Rescue Protocol."
   align="center"
@@ -36,7 +36,7 @@ import Img from '../../components/Img.astro';
 ### 👈 B. Text Wrapped around Image on the Right (`align="right"`)
 ```mdx
 <Img
-  src="/attachments/reason-ultrasound-echo.svg"
+  src="/assets/reason-ultrasound-echo.svg"
   alt="POCUS Echo View"
   caption="Cardiac standstill on subxiphoid view."
   align="right"
@@ -50,7 +50,7 @@ Your clinical prose text goes here... It will automatically float to the left of
 ### 👉 C. Text Wrapped around Image on the Left (`align="left"`)
 ```mdx
 <Img
-  src="/attachments/reason-ultrasound-echo.svg"
+  src="/assets/reason-ultrasound-echo.svg"
   alt="POCUS Echo View"
   caption="Parasternal long axis view."
   align="left"
@@ -64,7 +64,7 @@ Your clinical prose text goes here... It will automatically float to the right o
 ### ↔️ D. Wide Breakout Banner (`align="wide"`)
 ```mdx
 <Img
-  src="/attachments/reason-ultrasound-echo.svg"
+  src="/assets/reason-ultrasound-echo.svg"
   alt="Landmark Trial Subgroup Analysis"
   caption="Figure 2: REASON Trial Multicenter Data Subgroup Matrix."
   align="wide"
@@ -77,7 +77,7 @@ Your clinical prose text goes here... It will automatically float to the right o
 ### 📐 E. Custom Pixel / Percentage Widths
 ```mdx
 <Img
-  src="/attachments/rsi-algorithm-flowchart.svg"
+  src="/assets/rsi-algorithm-flowchart.svg"
   alt="Custom Sized Image"
   align="center"
   width="450px"
@@ -89,6 +89,6 @@ Your clinical prose text goes here... It will automatically float to the right o
 
 ## 📁 3. Adding Images to your Obsidian Project
 
-1. Drag & drop any photo or diagram into your Obsidian vault's `public/attachments/` folder.
-2. In your note, reference it as `/attachments/filename.png` or `/attachments/filename.jpg`.
+1. Drag & drop any photo or diagram into your Obsidian vault's `public/assets/` folder.
+2. In your note, reference it as `/assets/filename.png` or `/assets/filename.jpg`.
 3. When you push to GitHub, our **Automated Sharp Engine** will downscale it (>1920px) and generate a compressed WebP version to save storage on your mobile phone!

@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Img from '../../components/Img.astro';
 import ObsidianCallout from '../../components/ObsidianCallout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { getSectionConfig } from '../../config/sections';
 import { getPostSlug } from '../../utils/slug';
 import readingTime from 'reading-time';
@@ -19,10 +19,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 
 const sectionConfig = getSectionConfig(post.data.section);
-const readStats = readingTime(post.body);
+const readStats = readingTime(post.body || '');
 const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
