@@ -62,16 +62,27 @@ const shadowClass = {
   lg: 'shadow-2xl shadow-slate-950/40 ring-1 ring-slate-800/80',
 }[shadow];
 
-// Dynamically resolve image assets for Astro's Built-in Image Optimizer
-const images = import.meta.glob<{ default: ImageMetadata }>('/{assets,src/assets,public/assets,public/attachments}/**/*.{jpeg,jpg,png,gif,webp,svg}');
+// Dynamically resolve image assets across all vault folder structures (src/content/assets, assets, public/assets)
+const images = import.meta.glob<{ default: ImageMetadata }>('/{src/content/assets,assets,src/assets,public/assets,public/attachments}/**/*.{jpeg,jpg,png,gif,webp,svg,JPEG,JPG,PNG,WEBP}');
 
 let imageAsset: ImageMetadata | undefined;
 let isSvg = false;
 
 if (typeof src === 'string') {
   const cleanPath = src.startsWith('/') ? src : `/${src}`;
+  const filename = cleanPath.split('/').pop()?.toLowerCase();
   isSvg = cleanPath.toLowerCase().endsWith('.svg');
-  const matchedKey = Object.keys(images).find(k => k === cleanPath || k.endsWith(cleanPath));
+  
+  const matchedKey = Object.keys(images).find(k => {
+    const kLower = k.toLowerCase();
+    const cleanLower = cleanPath.toLowerCase();
+    return (
+      kLower === cleanLower ||
+      kLower.endsWith(cleanLower) ||
+      (filename && kLower.endsWith('/' + filename))
+    );
+  });
+  
   if (matchedKey && !isSvg) {
     imageAsset = (await images[matchedKey]()).default;
   }

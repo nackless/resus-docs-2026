@@ -5,15 +5,40 @@ import sharp from 'sharp';
 const MAX_WIDTH = 1920;
 const QUALITY = 82;
 
+const SRC_CONTENT_ASSETS = path.join(process.cwd(), 'src', 'content', 'assets');
+const PUBLIC_ASSETS = path.join(process.cwd(), 'public', 'assets');
+const ROOT_ASSETS = path.join(process.cwd(), 'assets');
+
+// Sync src/content/assets -> public/assets & assets/
+function syncDirectories() {
+  const dirsToEnsure = [PUBLIC_ASSETS, ROOT_ASSETS];
+  dirsToEnsure.forEach(d => {
+    if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
+  });
+
+  if (fs.existsSync(SRC_CONTENT_ASSETS)) {
+    const files = fs.readdirSync(SRC_CONTENT_ASSETS);
+    for (const file of files) {
+      const srcFile = path.join(SRC_CONTENT_ASSETS, file);
+      if (fs.statSync(srcFile).isFile()) {
+        dirsToEnsure.forEach(targetDir => {
+          const destFile = path.join(targetDir, file);
+          fs.copyFileSync(srcFile, destFile);
+        });
+      }
+    }
+  }
+}
+
 const TARGET_DIRS = [
-  path.join(process.cwd(), 'assets'),
-  path.join(process.cwd(), 'public', 'assets'),
+  SRC_CONTENT_ASSETS,
+  ROOT_ASSETS,
+  PUBLIC_ASSETS,
   path.join(process.cwd(), 'public', 'attachments'),
 ];
 
 async function processDirectory(dirPath) {
   if (!fs.existsSync(dirPath)) {
-    console.log(`[Optimize Images] Directory missing, skipping: ${dirPath}`);
     return;
   }
 
@@ -40,11 +65,9 @@ async function processDirectory(dirPath) {
       const metadata = await image.metadata();
 
       let pipeline = image.clone();
-      let needsResize = false;
 
       if (metadata.width && metadata.width > MAX_WIDTH) {
         pipeline = pipeline.resize({ width: MAX_WIDTH, withoutEnlargement: true });
-        needsResize = true;
         console.log(`  └─ Downscaling from ${metadata.width}px to ${MAX_WIDTH}px`);
       }
 
@@ -67,7 +90,8 @@ async function processDirectory(dirPath) {
 }
 
 async function run() {
-  console.log('=== Starting Resus Docs Automated Image Optimization Engine ===');
+  console.log('=== Starting Resus Docs Automated Image Optimization & Sync Engine ===');
+  syncDirectories();
   for (const dir of TARGET_DIRS) {
     await processDirectory(dir);
   }
